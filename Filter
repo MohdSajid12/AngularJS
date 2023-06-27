@@ -1,0 +1,109 @@
+//THIS IS HTML PART
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS</title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/script.js"></script>
+</head>
+
+<body ng-controller="myController">
+
+<!-- 
+    max="5" this means input box will not go ahead of 5 -->
+   Rows to display : <input type="number" step ="1" min ="0" max="5" ng-model="rowlimit"/>
+    <br>
+
+   <table border="2">
+    <thead>
+        <tr>
+        <td>Name</td>
+        <td>DOB</td>
+        <td>Gender</td>
+        <td>Salary</td>
+    </tr>
+    </thead>
+    <tbody>
+
+        <!-- limitTo:2:1 -> this means it will show only two row and 1 here is that it will start with index 1 means it will start showing two data from index 1 and if we will define 2:2 means it will show only two data and show from 3rd row  -->
+
+        <!-- <tr ng-repeat="employee in employees | limitTo :2:1"> //-->
+
+
+        <!-- this will show according to input usme jitne no honge utni line shw krega
+           // <tr ng-repeat="employee in employees | limitTo :rowlimit"></tr> //-->
+
+            <tr ng-repeat="employee in employees | limitTo :rowlimit">
+           <!-- this will change all the name in the upper case -->
+            <td>{{employee.name| uppercase}}</td>
+
+            <!-- this will show only date year and month -->
+
+            <td>{{employee.dob|date:"dd/MM/yyyy"}}</td>
+
+            <!-- this will change all the gender in the lowercase -->
+            <td>{{employee.gender|lowercase}}</td>
+
+            <!-- number :  this will add comma in thousand -->
+
+            <td>{{employee.salary| number}}</td>
+
+            <!-- this will add cureency means it will display salary like this we can say in doolar $45,000
+            <td>{{employee.salary| currency}}</td> -->
+        </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+// THIS IS JAVASCRIPT
+
+
+var myApp = angular.module("myModule" ,[])
+.controller('myController' ,function ($scope)
+{
+   
+    var employees = [
+     {name :"Kohli" ,dob :new Date("novermber 23,1980") , gender:"Male" ,salary: 50000},
+     {name :"Rohit" ,dob :new Date("september 23,1970") , gender:"male" ,salary: 40000},
+     {name :"Smriti" ,dob :new Date("january 3,1990") , gender:"Female" ,salary: 5000},
+     {name :"Harman" ,dob :new Date("novermber 2,1987") , gender:"Female" ,salary: 20000},
+     
+    ];
+
+    $scope.employees = employees;
+
+    //this means in starting point bina kuch kiye 3data show krega default
+   $scope.rowlimit =3;
+
+});
+
+
+
+
+//we have just registered controller with module
+// myApp.controller('myController' , function ($scope)
+// {
+//    var employee = {
+//       firstName  : "sajid",
+//       lastName : 'shaikh',
+//       gender : 'male'
+//    }
+
+//    $scope.employee = employee;
+// });
