@@ -1,1 +1,84 @@
+//HTML PART
 
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS</title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/script.js"></script>
+</head>
+
+<body ng-controller="myController">
+
+   <table border="2">
+    <thead>
+        <tr>
+        <td>Name</td>
+        <td>Likes</td>
+        <td>Dislikes</td>
+        <td>Likes/Dislikes</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="technology in technologies">
+            <td>{{technology.name}}</td>
+            <td>{{technology.likes}}</td>
+            <td>{{technology.dislikes}}</td>
+
+         <td><input type="button" value="likes" ng-click="incrementLikes(technology)"></td>
+         <td><input type="button" value="dislikes" ng-click="incrementdislikes(technology)"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+//JS PART
+
+
+var myApp = angular.module("myModule" ,[])
+.controller('myController' ,function ($scope)
+{
+     var technologies  = [
+      { name : "c++" , likes :0 , dislikes: 0  },
+      { name : "java" , likes :0 , dislikes: 0  },
+      { name : "python" , likes :0 , dislikes: 0  }
+     ];
+
+     $scope.technologies = technologies;
+
+     $scope.incrementLikes = function (technology)
+     {
+      technology.likes++;
+     }
+     $scope.incrementdislikes = function (technology)
+     {
+      technology.dislikes++;
+     }
+});
+
+
+
+
+//we have just registered controller with module
+// myApp.controller('myController' , function ($scope)
+// {
+//    var employee = {
+//       firstName  : "sajid",
+//       lastName : 'shaikh',
+//       gender : 'male'
+//    }
+
+//    $scope.employee = employee;
+// });
