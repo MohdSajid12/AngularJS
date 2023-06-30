@@ -1,0 +1,89 @@
+//isme or html bna ke view kr skte h
+
+
+//first.html
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS</title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/script.js"></script>
+</head>
+
+<body ng-controller="myController">
+   
+   <div ng-include="'second.html'"></div>
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+//second.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Salary</td>
+            </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="employee in employees">
+            <td>{{employee.name}}</td>         
+            <td>{{employee.gender}}</td>
+            <td>{{employee.salary}}</td>
+
+          </tr>
+
+          
+    </tbody>
+</table>
+
+</body>
+</html>
+
+
+
+
+//JS
+// THIS IS JAVASCRIPT
+
+
+var myApp = angular.module("myModule" ,[])
+.controller('myController' ,function ($scope)
+{
+   
+    var employees = [
+     {name :"Kohli" , gender:"Male" ,salary: 50000},
+     {name :"Rohit", gender:"male" ,salary: 40000},
+     {name :"Smriti", gender:"Female" ,salary: 5000},
+     {name :"Harman", gender:"Female" ,salary: 20000},
+     
+    ];
+
+    $scope.employees = employees;
+   
+
+
+});
+
+
