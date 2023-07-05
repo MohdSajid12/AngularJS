@@ -1,0 +1,74 @@
+//THIS IS HTML PART
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS</title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/script.js"></script>
+</head>
+
+<body ng-controller="myController">
+    
+	  <input type="text" placeholder="enter your name" ng-model="name">
+
+	  <input type="button"   value="click to see alert" ng-click="displayAlert(name)">
+
+	  <input type="button"   value="click to see promt" ng-click="displayPromt()">
+
+	  <input type="button"   value="click to see addingvalues" ng-click="Add()">
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+//THIS IS JS PART
+var myApp = angular.module('myApp', [])
+.controller('myController', function($scope,$window){
+   
+  $scope.displayAlert = function(name){
+           $window.alert("your name is "  +  name)
+  }
+
+
+  $scope.displayPromt = function()
+  {
+	//prompt funtion alert box mename lega fir done name ek sath yout fulll name ke sath dikha dega
+	var fname = $window.prompt('enter first Name')
+	var lname = $window.prompt('enter last Name')
+
+	$window.alert('your full name is:' +fname + " "+lname)
+  }
+
+
+  
+//prompt() instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog  hme khud se valye denihoti h alert me yhi promt h
+  $scope.Add = function()
+  {
+
+	//parseInt isliye qki prompt string value deta h agr hm bina parseInt ke valuedenge jese value1 = 3 din  fir value2=5 din to o/p 35 dikhayega qki yh as a stringe leta h
+	var num1 = parseInt($window.prompt('enter first value'))
+	var num2 = parseInt($window.prompt('enter second value'))
+
+	$window.alert('your value is:' + (num1+num2))
+  }
+	
+});
+
+
+
+
+
+
